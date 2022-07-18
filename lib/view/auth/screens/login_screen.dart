@@ -20,6 +20,8 @@ class Loginscreen extends ConsumerStatefulWidget {
 class _LoginscreenState extends ConsumerState<Loginscreen> {
   final phonecontroller = TextEditingController();
   Country? country;
+
+
   @override
   void dispose() {
     phonecontroller.dispose();
@@ -41,7 +43,7 @@ class _LoginscreenState extends ConsumerState<Loginscreen> {
     if (country != null && phoneNumber.isNotEmpty) {
       ref
           .read(authControllerProvider)
-          .signInWithPhone(context, '+${country!.phoneCode}phoneNumber');
+          .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
     } else {
     showsnackbr(context: context, content: 'Add country code');
     }
@@ -68,49 +70,58 @@ class _LoginscreenState extends ConsumerState<Loginscreen> {
       backgroundColor: Colors.black,
       body: Padding(
         padding: const EdgeInsets.all(18.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
           children: [
-            const SizedBox(height: 12),
-            const Text(
-              'Whatsapp needs to verify your phone number',
-              style: TextStyle(fontSize: 13, color: Colors.white),
-            ),
-            const SizedBox(height: 9),
-            TextButton(
-                onPressed: () => pickCountry(),
-                child: const Text("Add country")),
-            const SizedBox(height: 6),
-            Row(
-              children: [
-                if (country != null)
-                  Text(
-                    '+${country!.phoneCode}',
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                const SizedBox(width: 10),
-                SizedBox(
-                  width: size.width * 0.7,
-                  child: TextField(
-                    style: const TextStyle(color: Colors.white),
-                    controller: phonecontroller,
-                    decoration: const InputDecoration(
-                      labelStyle: TextStyle(color: Colors.white38),
-                      labelText: ' phone number',
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey)),
-                      // focusedBorder: OutlineInputBorder(
-                      //     borderSide: BorderSide(color: Colors.grey)),
+            Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 12),
+              const Text(
+                'Whatsapp needs to verify your phone number',
+                style: TextStyle(fontSize: 13, color: Colors.white),
+              ),
+              const SizedBox(height: 9),
+              TextButton(
+                  onPressed: () => pickCountry(),
+                  child: const Text("Add country")),
+              const SizedBox(height: 6),
+              Row(
+                children: [
+                  if (country != null)
+                    Text(
+                      '+${country!.phoneCode}',
+                      style: const TextStyle(color: Colors.white),
                     ),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 100),
-            SizedBox(
-              width: 90,
-              child: CustomButton(onpressed:sendPhoneNumber, text: 'NEXT'),
-            )
+                  const SizedBox(width: 10),
+                  SizedBox(
+                    width: size.width * 0.7,
+                    child: TextField(
+                      style: const TextStyle(color: Colors.white),
+                      controller: phonecontroller,
+                      decoration: const InputDecoration(
+                        labelStyle: TextStyle(color: Colors.white38),
+                        labelText: ' phone number',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey)),
+                        // focusedBorder: OutlineInputBorder(
+                        //     borderSide: BorderSide(color: Colors.grey)),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+               SizedBox(height:size.height*0.6),
+              InkWell(
+                child: SizedBox(
+                  width: 90,
+                  child: CustomButton(
+                    onpressed:sendPhoneNumber,
+                     text: 'NEXT'
+                     ),
+                ),
+              )
+            ],
+          )
           ],
         ),
       ),

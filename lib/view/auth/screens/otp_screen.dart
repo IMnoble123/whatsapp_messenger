@@ -49,11 +49,12 @@ class Otpscreen extends ConsumerWidget {
               style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                   labelStyle: TextStyle(color: Colors.grey),
-                  labelText: '-----'),
+                  labelText: '- - - - - -'),
               keyboardType: TextInputType.number,
               onChanged: (val) {
                 if (val.length == 6) {
-                  verifyOTP(ref, context, val.trim());
+                  verifyOTP(ref, context, val.trim()
+                  );
                 }
               },
             ),
