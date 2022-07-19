@@ -9,11 +9,17 @@ class Otpscreen extends ConsumerWidget {
   final String verificationId;
   const Otpscreen({Key? key, required this.verificationId}) : super(key: key);
 
-  void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
-    ref
-        .read(authControllerProvider)
-        .verifyOTP(context, verificationId, userOTP);
-  }
+  void verifyOTP(
+    WidgetRef ref, 
+    BuildContext context, 
+    String userOTP
+    ) {
+    ref.read(authControllerProvider).verifyOTP(
+      context, 
+      verificationId,
+       userOTP
+       );
+      }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,7 +37,7 @@ class Otpscreen extends ConsumerWidget {
             )),
         title: const Text(
           'Verifing phone number',
-          style: TextStyle(fontSize: 13, color: Colors.indigo),
+          style: TextStyle(fontSize: 16, color: Colors.white),
         ),
       ),
       body: Column(
@@ -40,7 +46,7 @@ class Otpscreen extends ConsumerWidget {
           const SizedBox(height: 20),
           const Text(
             'We have sent otp via sms.',
-            style: TextStyle(fontSize: 12, color: Colors.indigo),
+            style: TextStyle(fontSize: 15, color: Colors.indigo),
           ),
           SizedBox(
             width: size.width * 0.5,
@@ -48,8 +54,8 @@ class Otpscreen extends ConsumerWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
-                  labelStyle: TextStyle(color: Colors.grey),
-                  labelText: '- - - - - -'),
+                  hintStyle: TextStyle(color: Colors.grey,fontSize: 15),
+                  hintText: '- - - - - -'),
               keyboardType: TextInputType.number,
               onChanged: (val) {
                 if (val.length == 6) {

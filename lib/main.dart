@@ -32,14 +32,11 @@ class MyApp extends ConsumerWidget {
                 return const Openingscreen();
               } else {
                 return const MobilelayoutScreen();
-             }
+              }
             },
             error: (err, trace) {
-              return Errorpage(error: err.toString()
-              );
+              return Errorpage(error: err.toString());
             },
-            loading: () => const LodingScreen()
-            )
-          );
-        }
-      }
+            loading: () => const LodingScreen()));
+  }
+}

@@ -5,7 +5,10 @@ import 'package:flutter/src/widgets/framework.dart';
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onpressed;
-  const CustomButton({Key? key, required this.text, required this.onpressed}) : super(key: key);
+  const CustomButton({Key? key, 
+  required this.text,
+   required this.onpressed
+   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,8 @@ class CustomButton extends StatelessWidget {
           text,
           style: const TextStyle(
             color: Colors.white,
-          ),
         ),
-        );
+      ),
+    );
   }
 }

@@ -110,18 +110,18 @@ class _LoginscreenState extends ConsumerState<Loginscreen> {
                   )
                 ],
               ),
-               SizedBox(height:size.height*0.6),
+               SizedBox(height:size.height*0.5),
               InkWell(
                 child: SizedBox(
                   width: 90,
                   child: CustomButton(
                     onpressed:sendPhoneNumber,
                      text: 'NEXT'
-                     ),
-                ),
-              )
-            ],
-          )
+                   ),
+                 ),
+               )
+             ],
+            )
           ],
         ),
       ),

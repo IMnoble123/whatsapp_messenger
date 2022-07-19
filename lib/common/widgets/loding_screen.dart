@@ -13,6 +13,7 @@ class LodingScreen extends StatelessWidget {
         margin: const EdgeInsets.only(top: 20),
         child: const CircularProgressIndicator(
           backgroundColor: Colors.white,
-        ));
+    ),
+   );
   }
 }

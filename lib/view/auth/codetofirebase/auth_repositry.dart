@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +20,7 @@ class AuthRepository {
   AuthRepository({required this.auth, required this.firestore});
 
   Future<UserModel?> getCurrentUserData() async {
-    var userData =
-        await firestore.collection('users').doc(auth.currentUser?.uid).get();
+    var userData = await firestore.collection('users').doc(auth.currentUser?.uid).get();
     UserModel? user;
     if (userData.data() != null) {
       user = UserModel.fromMap(userData.data()!);
@@ -43,7 +41,8 @@ class AuthRepository {
           codeSent: ((String verificationId, int? resendToken) async {
             Navigator.pushNamed(context, Otpscreen.routeName,
                 arguments: verificationId);
-          }),
+          }
+        ),
           codeAutoRetrievalTimeout: (String verification) {});
     } on FirebaseAuthException catch (e) {
       showsnackbr(context: context, content: e.message!);

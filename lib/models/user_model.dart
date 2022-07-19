@@ -14,6 +14,8 @@ class UserModel {
       required this.phoneNumber,
       required this.groupId});
 
+      //json to steriziable
+
   Map<String, dynamic> toMap() {
     return {
       'name': name,

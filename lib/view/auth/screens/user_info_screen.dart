@@ -43,45 +43,67 @@ class _UserinformationState extends ConsumerState<Userinformation> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(onPressed: (){},
+         icon: const Icon(Icons.arrow_back_ios,
+         color: Colors.white
+          ),
+         ),
+      ),
       body: SafeArea(
           child: Column(
         children: [
-          Stack(children: [
+         const  SizedBox(height: 30),
+          Stack(
+            children: [
             image == null
                 ? const CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2e%2F1e%2F00%2F2e1e004c0c7042c1777c2f9b6675a571.jpg&imgrefurl=https%3A%2F%2Fin.pinterest.com%2Fpin%2F843369467709396809%2F&tbnid=5aKIUVZd2r_gEM&vet=12ahUKEwjq5d6gx__4AhUjgmMGHU4nAcgQMygNegUIARDYAQ..i&docid=nBf4oNY58uJBbM&w=1200&h=1208&q=png%20image%20of%20whatsapp&ved=2ahUKEwjq5d6gx__4AhUjgmMGHU4nAcgQMygNegUIARDYAQ'),
-                    radius: 55,
+                    backgroundImage:AssetImage('assets/defaltimg.png'),
+                    radius: 50,
                   )
                 : CircleAvatar(
                     backgroundImage: FileImage(image!),
-                    radius: 55,
+                    radius: 50,
                   ),
             Positioned(
               left: 80,
               bottom: -10,
               child: IconButton(
                   onPressed: selectImage,
-                  icon: const Icon(Icons.add_a_photo_outlined)),
+                  icon: const Icon(Icons.add_a_photo_outlined,
+                  color: Colors.green
+                  )
+                ),
             )
           ]),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 width: size.width * 0.85,
                 padding: const EdgeInsets.all(20),
-                child: TextField(
-                  controller: nameController,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
-                    labelStyle: TextStyle(color: Colors.grey),
-                    hintText: 'Enter your Name',
-                  ),
-                ),
+                child:TextField(
+                      style: const TextStyle(color: Colors.white),
+                      controller:nameController,
+                      decoration: const InputDecoration(
+                        labelStyle: TextStyle(color: Colors.white38),
+                        labelText: 'Name',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey)),
+                        // focusedBorder: OutlineInputBorder(
+                        //     borderSide: BorderSide(color: Colors.grey)),
+                      ),
+                    ),
               ),
               IconButton(
                   onPressed: storeUserData,
-                  icon: const Icon(Icons.done, color: Colors.white)),
+                  icon: const Icon(Icons.done,
+                   color: Colors.white,size: 18
+                   )
+                  ),
             ],
           )
         ],

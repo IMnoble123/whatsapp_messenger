@@ -41,6 +41,7 @@ dependencies:
   flutter_riverpod: ^2.0.0-dev.9
   provider: ^6.0.3
   image_picker: ^0.8.5+3
+  flutter_contacts: ^1.1.5
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,8 @@ flutter:
   assets:
     - assets/image12.png
     - assets/b12.png
+    - assets/meta1.jpg 
+    - assets/defaltimg.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
