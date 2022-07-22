@@ -22,21 +22,22 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Whatsapp',
-        onGenerateRoute: (settings) => generateRoute(settings),
-        // home:  const Openingscreen(),
-        home: ref.watch(userDataAuthProvider).when(
-            data: (user) {
-              if (user == null) {
-                return const Openingscreen();
-              } else {
-                return const MobilelayoutScreen();
-              }
-            },
-            error: (err, trace) {
-              return Errorpage(error: err.toString());
-            },
-            loading: () => const LodingScreen()));
+      debugShowCheckedModeBanner: false,
+      title: 'Whatsapp',
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: ref.watch(userDataAuthProvider).when(
+          data: (user) {
+            if (user == null) {
+              return const Openingscreen();
+            } else {
+              return const MobileLayoutScreen();
+            }
+          },
+          error: (err, trace) {
+            return Errorpage(error: err.toString());
+          },
+          loading: () => const LodingScreen()));
+      // home: const MobileLayoutScreen(),
+    // );
   }
 }

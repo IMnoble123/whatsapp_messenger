@@ -33,9 +33,7 @@ class _UserinformationState extends ConsumerState<Userinformation> {
   void storeUserData() {
     String name = nameController.text.trim();
     if (name.isNotEmpty) {
-      ref
-          .read(authControllerProvider)
-          .saveUserDataToFirebase(context, name, image);
+      ref.read(authControllerProvider).saveUserDataToFirebase(context, name, image);
     }
   }
 

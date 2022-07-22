@@ -1,24 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsappmessenger/common/widgets/error.dart';
 import 'package:whatsappmessenger/common/widgets/loding_screen.dart';
+import 'package:whatsappmessenger/view/chat/mobile_chat_screen.dart';
 import 'package:whatsappmessenger/view/select_condatcs/screens/controller/select_contact_controller.dart';
 
 class ContactScreen extends ConsumerWidget {
   static const String routeName = '/contact-screen';
   const ContactScreen({Key? key}) : super(key: key);
 
+  void selectContact(
+      WidgetRef ref, Contact selectedContact, BuildContext context) {
+    //here we use read not watch beause its an one time called function
+    ref
+        .read(selectContactControllerProvider)
+        .selectContact(selectedContact, context);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 52, 51, 51),
+        // backgroundColor: const Color.fromARGB(255, 8, 115, 63),
+        backgroundColor: Colors.deepPurple[400],
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
         ),
         title: const Text(
@@ -45,13 +58,23 @@ class ContactScreen extends ConsumerWidget {
               itemCount: contactList.length,
               itemBuilder: (context, index) {
                 final contact = contactList[index];
-                return ListTile(
-                  title:Text(contact.displayName) ,
-                  leading:contact.photo == null ? null :CircleAvatar(
-                    backgroundColor: Colors.blueAccent,
-                    backgroundImage: MemoryImage(contact.photo!),
-                    radius: 30,
-                  )
+                return InkWell(
+                  // onTap: (() => selectContact(ref, contact, context)),
+                  onTap: (() => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => const MobileChatScreen(
+                          name: 'Hello', uid: '9876543210')))),
+                  child: ListTile(
+                      title: Text(
+                        contact.displayName,
+                        style: const TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                      leading: contact.photo == null
+                          ? null
+                          : CircleAvatar(
+                              backgroundColor: Colors.blueAccent,
+                              backgroundImage: MemoryImage(contact.photo!),
+                              radius: 30,
+                            )),
                 );
               }),
           error: (err, trace) => Errorpage(error: err.toString()),

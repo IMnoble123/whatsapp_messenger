@@ -20,7 +20,8 @@ class AuthRepository {
   AuthRepository({required this.auth, required this.firestore});
 
   Future<UserModel?> getCurrentUserData() async {
-    var userData = await firestore.collection('users').doc(auth.currentUser?.uid).get();
+    var userData =
+        await firestore.collection('users').doc(auth.currentUser?.uid).get();
     UserModel? user;
     if (userData.data() != null) {
       user = UserModel.fromMap(userData.data()!);
@@ -41,8 +42,7 @@ class AuthRepository {
           codeSent: ((String verificationId, int? resendToken) async {
             Navigator.pushNamed(context, Otpscreen.routeName,
                 arguments: verificationId);
-          }
-        ),
+          }),
           codeAutoRetrievalTimeout: (String verification) {});
     } on FirebaseAuthException catch (e) {
       showsnackbr(context: context, content: e.message!);
@@ -86,17 +86,28 @@ class AuthRepository {
           uid: uid,
           profilePic: photoUrl,
           isOnline: true,
-          phoneNumber: auth.currentUser!.uid,
+          phoneNumber: auth.currentUser!.phoneNumber.toString(),
           groupId: []);
       await firestore.collection('users').doc(uid).set(user.toMap());
 
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const MobilelayoutScreen()),
+          MaterialPageRoute(builder: (context) => const MobileLayoutScreen()),
           (route) => false);
     } catch (e) {
       showsnackbr(context: context, content: (e).toString());
     }
+  }
+
+//her map is userd  to convert userid  docement shapshot to  user model
+  Stream<UserModel> userData(String userId) {
+    return firestore
+        .collection('users')
+        .doc(userId)
+        .snapshots()
+        .map((event) => UserModel.fromMap(
+              event.data()!,
+            ));
   }
 }
