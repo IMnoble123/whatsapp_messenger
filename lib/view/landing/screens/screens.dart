@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:whatsappmessenger/common/widgets/custombutton.dart';
 import 'package:whatsappmessenger/view/auth/screens/login_screen.dart';
 

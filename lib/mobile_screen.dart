@@ -1,10 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsappmessenger/common/utls/utls.dart';
-import 'package:whatsappmessenger/view/auth/controller/auth_controller.dart';
-import 'package:whatsappmessenger/view/select_condatcs/screens/controller/select_screencontacts.dart';
+import 'package:whatsappmessenger/view/chat/widgets/select_screencontacts.dart';
+import 'view/auth/controller/auth_controller.dart';
 
 class MobileLayoutScreen extends ConsumerStatefulWidget {
   static const String routeName = '/mobile-layout';
@@ -21,10 +20,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
   @override
   void initState() {
     super.initState();
-    tabBarController = TabController(
-      initialIndex: 0,
-      length: 3, vsync: this
-      );
+    tabBarController = TabController(initialIndex: 0, length: 3, vsync: this);
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -34,20 +30,20 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
     WidgetsBinding.instance.removeObserver(this);
   }
 
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   super.didChangeAppLifecycleState(state);
-  //   switch (state) {
-  //     case AppLifecycleState.resumed:
-  //       ref.read(authControllerProvider).setUserState(true);
-  //       break;
-  //     case AppLifecycleState.inactive:
-  //     case AppLifecycleState.detached:
-  //     case AppLifecycleState.paused:
-  //       ref.read(authControllerProvider).setUserState(false);
-  //       break;
-  //   }
-  // }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        ref.read(authControllerProvider).setUserState(true);
+        break;
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.detached:
+      case AppLifecycleState.paused:
+        ref.read(authControllerProvider).setUserState(false);
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,11 +126,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
         ),
         body: TabBarView(
           controller: tabBarController,
-          children: const [
-            Text('Calls'),
-            Text('status'),
-            Text('chats')
-          ],
+          children: const [Text('Calls'), Text('status'), Text('chats')],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
@@ -145,7 +137,7 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
             }
           },
           // backgroundColor: const Color.fromARGB(255, 8, 115, 63),
-           backgroundColor: Colors.deepPurple[400],
+          backgroundColor: Colors.deepPurple[400],
           child: const Icon(
             Icons.comment,
             color: Colors.white,

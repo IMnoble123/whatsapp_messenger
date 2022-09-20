@@ -3,18 +3,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsappmessenger/common/widgets/loding_screen.dart';
 import 'package:whatsappmessenger/models/user_model.dart';
 import 'package:whatsappmessenger/view/auth/controller/auth_controller.dart';
-import 'package:whatsappmessenger/view/chat/chat_list.dart';
+import 'package:whatsappmessenger/view/chat/widgets/chat_list.dart';
 
-import 'allwdgets/Bottom_chat_screen.dart';
+import 'widgets/Bottom_chat_screen.dart';
 
 class MobileChatScreen extends ConsumerWidget {
   static const String routeName = '/mobile-chatscreen';
   final String name;
   final String uid;
+  final bool isGroupChat;
   const MobileChatScreen({
     Key? key,
     required this.name,
     required this.uid,
+    required this.isGroupChat
   }) : super(key: key);
 
   @override
@@ -91,16 +93,17 @@ class MobileChatScreen extends ConsumerWidget {
         ],
       ),
       body: Column(
-        children:   [
-          const Expanded(
-            child: Chatlist()),
-           Bottomchatfield(
+        children: [
+          Expanded(
+            child: Chatlist(recieverUserId: uid,
+            ),
+          ),
+          Bottomchatfield(
             recieverUserId: uid,
-           )
-
+            isGroupChat: isGroupChat,
+          )
         ],
       ),
     );
   }
 }
-
