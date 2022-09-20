@@ -1,16 +1,30 @@
-# whatsappmessenger
+# Messenger App
+an Social media platform
 
-A new Flutter project.
+## Features
+Firebase as backend
+otp verification
+user can send messages and emojies anf git ect..
+Mvc folder structure
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Deployment
+gitHub : https://github.com/IMnoble123/whatsapp_messenger.git 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Run Locally
+Clone the project
+
+  git clone https://github.com/IMnoble123/whatsapp_messenger.git
+Go to the project directory
+
+  cd my-project
+Install dependencies
+
+  flutter clean
+  Start the server
+
+  flutter pub get
+  flutter run
+
